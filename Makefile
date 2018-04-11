@@ -12,7 +12,7 @@ NOTEBOOKS_DIR ?= ./notebooks
 
 check:  # Check installation of Realest Data dependencies
 	scala -version
-	sbt sbtVersion
+	cd jobs && sbt sbtVersion
 	$(SPARK_HOME)/bin/spark-submit --version
 
 
@@ -43,7 +43,8 @@ submit_test:  ## Submits a test job
 	make submit_job job=com.realest_estate.TestJob
 
 
-test_local: kill_local package_jobs start_local submit_test kill_local ## Starts a local cluster and submits a test spark job to it
+test_local: kill_local start_local submit_test ## Starts a local cluster and submits a test spark job to it
+	make kill_local
 
 
 submit_job:  package_jobs ## Submits the job specified by the job args like `make sumbit_job job=<the_job>`

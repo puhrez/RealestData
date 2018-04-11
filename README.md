@@ -61,11 +61,14 @@ $ export SPARK_MASTER=spark://$(hostname):7077
 $ make submit_job job=com.realest_estate.TestJob
 ```
 
+Remember to teardown the cluser if you're done using it with `make kill_local`
+
+
 ### Explore
 
 `notebooks` is place to hold Juypter notebooks, providing an easy, yet powerful environment for manipulating data at any level in an ad-hoc, yet documentable, fashion. Investigations, prototypes, and research can all be performed in Python on top of PySpark and Seaborn. More languages and frameworks can be supported.
 
-Make sure the `$(which python)` is pointing to the python with the dependencies you need. If it isn't:
+Run `which python` and ensure that it's pointing to the python with the dependencies you need. If it *isn't*:
 
 ```bash
 $ export PYSPARK_PYTHON=<path_to_python_exe>
@@ -95,10 +98,11 @@ NOTE: If this is your first time with sbt or spark, this might take a little whi
 
 ### Notebooks
 
-Get a Spark cluster running (locally with `make start_local`) and export the location of the Master node to `SPARK_MASTER`
+If a Spark cluster *isn't* running, you can do so locally with `make start_local`. EExport the location of the Master node to `SPARK_MASTER` and run the Jupyter notebook
 
 ```bash
-$ start_local
+$ export SPARK_MASTER=spark://<master_hostname>:<master_port>
+$ make pyspark
 ```
 
 A Jupyter notebook will open in your browser, opened to the `notebooks` folder. Select the `Test` notebook and run it. If everything is cool, no error will be thrown, and you can go about your day.
@@ -137,6 +141,13 @@ $ make pyspark
 
 Check out the `Questions Investigation` notebook, this has a bunch of different answers to a variety of questions about the data; run it and you should see how you're able to read from the data returned by the job and perform queries on it.
 
+Once your done, do you computer a favor a teardown the cluster.
+
+```bash
+$ make kill_local
+```
+
+
 ## TODO
 
 Right now, while this system is uncoupled and organized, the lack of structure makes it rather haphazard to uses the pieces in conjunction, due to implicit timing dependencies and inferred schemas. Moreover, the platform is currently without a concrete database layer which will make informal analysis by non-technical users difficult.
@@ -146,5 +157,6 @@ Some various things that can be done to productionize this platform:
 * Provision and configure a Jenkins service to be able to structure pipelines from jobs with Terraform, Ansible, and Docker
 * Establish a schema registry so that jobs and databases can work in sync with different data shapes.
 * Design codepaths to provision and/or configure Databases to be populated by Lambda functions that run when jobs deposit their results in S3.
+* Adjust SBT so that only the job being submitted (and it's dep) get packaged
 
 This is only some of the possible directions this project can go, it really depends on the business needs.

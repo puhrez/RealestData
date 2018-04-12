@@ -1,10 +1,10 @@
 # Realest Data
 
-In order to facilitate the modernization of Realest Estate Crop., we present this project: Realest Data, modern data platform built ontop of Spark.
+In order to facilitate the modernization of Realest Estate Crop., we present this project: Realest Data, a modern data platform built ontop of Spark and Jupyter.
 
 ## Platform
 
-The platform is composed of two main components, a set of ETL jobs and a set of Analytics notebooks.
+The platform is composed of two main components, a set of ETL jobs and a set of analytics notebooks.
 
 ### Extract
 * Spark is used for the heavy lifting, performing extracting and transformations on data.
@@ -24,7 +24,7 @@ To work on or setup Realest Data, install the following tools according to their
 * [Python 3.6](https://www.python.org/)
 
 
-There may be some other things that require installaton to get everything working on your own machine, some googling will resolve the majority of these issues, however if that doesn't work. Feel free to create an issue that that this installation guide can be made more universal.
+There may be some other things that require installaton to get everything working on your own machine, some googling will resolve the majority of these issues, however if that doesn't work. Feel free to create an issue so that this installation guide can be made more universal.
 
 
 You can check if you have all the tools with:
@@ -50,7 +50,7 @@ NOTE: In order to export Notebooks to PDFs, you'll need to install pandoc and Te
 
 ### Extract
 
-`jobs` is a SBT project that contains collections Spark applications written in Scala which operates on some data somewhere and saves the results of those tranformations on that data in another place.
+`jobs` is a SBT project that contains Spark applications written in Scala which operate on some data somewhere and saves the results of those tranformations on that data in another place.
 
 Submitting a job is as easy as exporting the Master node to send to job to and using `submit_job` specifying the job (package.class format) you want to submit.
 
@@ -66,7 +66,7 @@ Remember to teardown the cluser if you're done using it with `make kill_local`
 
 ### Explore
 
-`notebooks` is place to hold Juypter notebooks, providing an easy, yet powerful environment for manipulating data at any level in an ad-hoc, yet documentable, fashion. Investigations, prototypes, and research can all be performed in Python on top of PySpark and Seaborn. More languages and frameworks can be supported.
+`notebooks` is the place to hold Juypter notebooks, providing an easy, yet powerful environment for manipulating data at any level in an ad-hoc, yet documentable, fashion. Investigations, prototypes, and research can all be performed in Python on top of PySpark and Seaborn. More languages and frameworks can be supported in the future.
 
 Run `which python` and ensure that it's pointing to the python with the dependencies you need. If it *isn't*:
 
@@ -86,14 +86,14 @@ $ make pyspark
 
 ### Jobs
 
-Once everything is installed, to start a local local cluster, run a test job to verify your local setup:
+Once everything is installed, to start a local cluster, run a test job, and verify your local setup:
 
 
 ```bash
 $ make test_local
 ```
 
-NOTE: If this is your first time with sbt or spark, this might take a little while. Also, for building the local cluster and tearing it down you may be asked for your password to connect locally to ssh.
+NOTE: If this is your first time with sbt or spark, this might take a little while as sbt has to download the right versions of itself, Scala, and the project's dependencies. Also, for building the local cluster and tearing it down you may be asked for your password to connect locally to ssh.
 
 
 ### Notebooks

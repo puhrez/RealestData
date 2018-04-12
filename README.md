@@ -150,9 +150,9 @@ $ make kill_local
 
 ## TODO
 
-Right now, while this system is uncoupled and organized, the lack of structure makes it rather haphazard to uses the pieces in conjunction, due to implicit timing dependencies and inferred schemas. Moreover, the platform is currently without a concrete database layer which will make informal analysis by non-technical users difficult.
+Right now, while this system is uncoupled and organized, the lack of structure makes it rather haphazard to use the pieces in conjunction, due to implicit timing dependencies and inferred schemas. Moreover, the platform is currently without a concrete database layer which will make informal analysis by non-technical users (among other tasks) difficult.
 
-Some various things that can be done to productionize this platform:
+Various things that can be done to productionize this platform:
 * Provision and orchestrate a Spark cluster using Terraform and Kubernetes
 * Provision and configure a Jenkins service to be able to structure pipelines from jobs with Terraform, Ansible, and Docker
 * Establish a schema registry so that jobs and databases can work in sync with different data shapes.
